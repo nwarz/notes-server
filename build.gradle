@@ -1,0 +1,51 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.0.0.RELEASE")
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+
+bootJar {
+    baseName = 'notes-server'
+    version =  '0.1.0'
+}
+
+springBoot {
+    mainClassName = 'com.nwarz.notes.Application'
+}
+
+repositories {
+    mavenCentral()
+}
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web")
+    compile("org.springframework.boot:spring-boot-starter-jdbc")
+    
+    compile("com.zaxxer:HikariCP")
+    compile("mysql:mysql-connector-java:6.0.6")
+    compile("org.springframework:spring-orm")
+    compile("org.hibernate:hibernate-core")
+    
+    compile("org.slf4j:slf4j-api:1.7.25")
+    compile("ch.qos.logback:logback-classic:1.2.3")
+    compile("ch.qos.logback:logback-core:1.2.3")
+    
+    
+    compile("org.assertj:assertj-core")
+    
+    testCompile("io.rest-assured:rest-assured:3.0.7")
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+}
